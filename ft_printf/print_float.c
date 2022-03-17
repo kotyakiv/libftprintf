@@ -6,13 +6,13 @@
 /*   By: ykot <ykot@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:30:30 by ykot              #+#    #+#             */
-/*   Updated: 2022/03/15 16:22:22 by ykot             ###   ########.fr       */
+/*   Updated: 2022/03/17 11:19:09 by ykot             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int if_not_nan_inf(long double arg, t_flags *flag, char **part_int)
+static int	if_not_nan_inf(long double arg, t_flags *flag, char **part_int)
 {
 	if (arg != arg)
 	{
@@ -38,8 +38,8 @@ static int if_not_nan_inf(long double arg, t_flags *flag, char **part_int)
 	return (1);
 }
 
-static int read_int_fr(long double arg, t_flags *flag,
-					   char **p_int, char **p_fr)
+static int	read_int_fr(long double arg, t_flags *flag, \
+						char **p_int, char **p_fr)
 {
 	check_minus_arg_f(&arg, flag);
 	*p_int = read_int_part(&arg);
@@ -66,15 +66,15 @@ static int read_int_fr(long double arg, t_flags *flag,
 	return (0);
 }
 
-static void free_all_str(char *part_int, char *part_frac)
+static void	free_all_str(char *part_int, char *part_frac)
 {
 	ft_strdel(&part_int);
 	ft_strdel(&part_frac);
 }
 
-static void print_prec_f(char *part_frac, t_flags *flag)
+static void	print_prec_f(char *part_frac, t_flags *flag)
 {
-	int i;
+	int	i;
 
 	if (flag->hash || flag->precision)
 	{
@@ -98,12 +98,12 @@ static void print_prec_f(char *part_frac, t_flags *flag)
 	}
 }
 
-void print_float(t_flags *flag, va_list *ap)
+void	print_float(t_flags *flag, va_list *ap)
 {
-	long double arg;
-	char *part_int;
-	char *part_frac;
-	int num_dig;
+	long double	arg;
+	char		*part_int;
+	char		*part_frac;
+	int			num_dig;
 
 	part_int = NULL;
 	part_frac = NULL;
@@ -114,7 +114,7 @@ void print_float(t_flags *flag, va_list *ap)
 		{
 			free_all_str(part_int, part_frac);
 			g_total = -1;
-			return;
+			return ;
 		}
 	}
 	num_dig = count_dig(part_int, flag);
